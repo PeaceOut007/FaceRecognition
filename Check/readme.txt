@@ -1,0 +1,1 @@
+Adding a check image
