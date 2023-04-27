@@ -3,15 +3,15 @@ import sys
 def face_recog():
     people = []
 
-    with open(r'C:/Users/KIIT/Desktop/astitva/FaceRecognition-main/Dataset/name_list.txt', 'r') as fp:
+    with open(r'C:/Users/KIIT/Desktop/VSCoding/Projects/FaceRecognition/Dataset/name_list.txt', 'r') as fp:
         for line in fp:
             x = line[:-1]
             people.append(x)
 
-    haar_cascade = cv.CascadeClassifier('C:/Users/KIIT/Desktop/astitva/FaceRecognition-main/MainCode/haar_face.xml')
+    haar_cascade = cv.CascadeClassifier('C:/Users/KIIT/Desktop/VSCoding/Projects/FaceRecognition/MainCode/haar_face.xml')
 
     face_recognizer = cv.face.LBPHFaceRecognizer_create()
-    face_recognizer.read('C:/Users/KIIT/Desktop/astitva/FaceRecognition-main/MainCode/face_trainer.yml')
+    face_recognizer.read('C:/Users/KIIT/Desktop/VSCoding/Projects/FaceRecognition/MainCode/face_trainer.yml')
 
     video_capture = cv.VideoCapture(0)
 
@@ -34,11 +34,7 @@ def face_recog():
                 print(f'Label = {people[label]} with a confidence of {confidence}')
                 cv.putText(frames, str(people[label]), (20,20), cv.FONT_HERSHEY_COMPLEX,1.0, (0,255,0), thickness = 2)
                 cv.rectangle(frames, (x,y), (x+w,y+h), (0,255,0), thickness = 1)
-                cv.putText(frames, "Attendance Marked", (120,420), cv.FONT_HERSHEY_COMPLEX,1.0, (0,255,0), thickness = 2)
-                print("Attendance Marked for "+people[label])
                 
-                sys.exit("Attendance Marked for "+people[label])            
-
         # Display the resulting frame
         cv.imshow('Attendance', frames)
 
